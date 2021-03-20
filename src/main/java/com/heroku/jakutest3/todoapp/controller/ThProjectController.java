@@ -71,7 +71,7 @@ public String update( Model model)
 }
 
 @ModelAttribute("ProjectsList")
-List<Projects> getGroups(){
+List<Projects> getProjects(){
         return projectRepository.findAll();
 }
 
