@@ -1,6 +1,7 @@
 package com.heroku.jakutest3.todoapp.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @Entity
@@ -9,6 +10,7 @@ public class Projects {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @NotBlank(message = "Opis projektu nie może być pusty.")
     private String description;
     @OneToMany( mappedBy = "projects")
     private Set<TaskGroup> groups;
@@ -24,11 +26,11 @@ public class Projects {
         this.steps = steps;
     }
 
-    Set<TaskGroup> getGroups() {
+    public Set<TaskGroup> getGroups() {
         return groups;
     }
 
-     void setGroups(Set<TaskGroup> groups) {
+    public void setGroups(Set<TaskGroup> groups) {
         this.groups = groups;
     }
 

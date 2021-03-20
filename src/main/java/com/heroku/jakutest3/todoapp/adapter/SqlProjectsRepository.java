@@ -14,9 +14,9 @@ import java.util.List;
 
 public interface SqlProjectsRepository extends ProjectRepository, JpaRepository<Projects, Integer> {
 
-    @Override
-    @Query("select distinct p from Projects p join fetch p.steps")
-    List<Projects> findAll();
+//    @Override
+//    @Query("select distinct p from Projects p join fetch p.steps")
+//    List<Projects> findAll();
 
 
 }
