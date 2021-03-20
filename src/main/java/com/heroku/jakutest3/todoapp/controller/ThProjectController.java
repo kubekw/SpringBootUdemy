@@ -70,9 +70,9 @@ public String update( Model model)
     return "projects";
 }
 
-@ModelAttribute("ProjectsList")
-List<Projects> getProjects(){
-        return projectRepository.findAll();
+@ModelAttribute("groupList")
+List<TaskGroup> getGroups(){
+        return taskGroupRepository.findAll();
 }
 
 
