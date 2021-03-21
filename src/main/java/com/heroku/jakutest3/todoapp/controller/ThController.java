@@ -3,11 +3,13 @@ package com.heroku.jakutest3.todoapp.controller;
 
 import com.heroku.jakutest3.todoapp.model.*;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -68,6 +70,22 @@ public String update( Model model)
     model.addAttribute("taski", taskRepository.findAll());
     return "tasks";
 }
+
+    @Transactional
+    @PostMapping(value = "/{id}", name = "toogleTask")
+    public String toggleTask(@PathVariable int id, Model model) {
+        Task task = new Task();
+        if(!taskRepository.existsById(id)) {
+            model.addAttribute("task", task);
+            model.addAttribute("taski", taskRepository.findAll());
+            return "tasks";
+        }
+        taskRepository.findById(id)
+                .ifPresent(taskToToogle -> taskToToogle.setDone(!taskToToogle.isDone()));
+        model.addAttribute("task", task);
+        model.addAttribute("taski", taskRepository.findAll());
+        return "tasks";
+    }
 
 @ModelAttribute("taskGroup")
     List<TaskGroup> getGroups(){

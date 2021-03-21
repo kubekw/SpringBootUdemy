@@ -48,13 +48,13 @@
     </dl>
 
     <table>
-        <tr><th>Numer Zadania</th><th>id</th><th>Description</th><th>Zrobione?</th></tr>
+        <tr><th>Numer Zadania</th><th>id</th><th>Description</th><th>Zrobione?</th><th>Zmiana statusu</th></tr>
     <tr th:each="task, taskStat : ${taski}">
         <td th:text="'Zadanie ' + ${taskStat.index + 1}"  ></td>
         <td th:text="${task.id}">Id</td>
         <td th:text="${task.description}">Opis</td>
         <td th:text="${task.done}">Wykonany?</td>
-        <td> <form action="#" method="post" name="toogleTask" th:action="@{/tasks/{id}(id=${task.id})}"><button type="submit">...</button> </form></td>
+        <td> <form action="#" method="post" name="toogleTask" th:action="@{/showTasks/{id}(id=${task.id})}"><button type="submit">Zmień</button> </form></td>
     </table>
 
     </tr>
