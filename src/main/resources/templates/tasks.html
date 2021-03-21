@@ -54,9 +54,11 @@
         <td th:text="${task.id}">Id</td>
         <td th:text="${task.description}">Opis</td>
         <td th:text="${task.done}">Wykonany?</td>
+        <td> <form action="#" method="post" name="toogleTask" th:action="@{/tasks/{id}(id=${task.id})}"><button type="submit">...</button> </form></td>
     </table>
 
     </tr>
+
 
 </main>
 
