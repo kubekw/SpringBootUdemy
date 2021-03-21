@@ -62,14 +62,28 @@ public class ThController {
 //    }
 
 @GetMapping
-public String update( Model model)
+@RequestMapping(value = "/group/{id}")
+public String taskByGroupId(@PathVariable int id, Model model)
         throws Exception {
     Task task = new Task();
     task.setDescription("Wprowadz opis");
     model.addAttribute("task", task);
-    model.addAttribute("taski", taskRepository.findAll());
+    model.addAttribute("taski", taskRepository.findAllByGroupId(id));
+
+    //FIXME stworzyć nowy widok dla tasków z grupy projekty oraz toogla
     return "tasks";
 }
+
+    @GetMapping
+    public String update(Model model)
+            throws Exception {
+        Task task = new Task();
+        task.setDescription("Wprowadz opis");
+        model.addAttribute("task", task);
+        model.addAttribute("taski", taskRepository.findAll());
+        return "tasks";
+    }
+
 
     @Transactional
     @PostMapping(value = "/{id}", params = "toogleTask")
