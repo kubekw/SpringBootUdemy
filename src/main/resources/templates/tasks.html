@@ -54,7 +54,7 @@
         <td th:text="${task.id}">Id</td>
         <td th:text="${task.description}">Opis</td>
         <td th:text="${task.done}">Wykonany?</td>
-        <td> <form action="#" method="post" name="toogleTask" th:action="@{/showTasks/{id}(id=${task.id})}"><button type="submit">Zmień</button> </form></td>
+        <td> <form action="#" method="post"  th:action="@{/showTasks/{id}(id=${task.id})}"><button name="toogleTask" type="submit">Zmień</button> </form></td>
     </table>
 
     </tr>

@@ -72,7 +72,7 @@ public String update( Model model)
 }
 
     @Transactional
-    @PostMapping(value = "/{id}", name = "toogleTask")
+    @PostMapping(value = "/{id}", params = "toogleTask")
     public String toggleTask(@PathVariable int id, Model model) {
         Task task = new Task();
         if(!taskRepository.existsById(id)) {
