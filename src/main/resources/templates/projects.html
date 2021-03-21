@@ -41,7 +41,11 @@
         <dt th:text="${project.description}">...</dt>
         <dd>
             <ul>
-                <li th:each="group: ${project.groups}" th:text="${group.description}">Grupy</li>
+                <li th:each="group: ${project.groups}">
+                    <a th:text="${group.description}"  th:href="|/showTasks?=${group.id}|">Grupy</a>
+                </li>
+
+
             </ul>
         </dd>
 
