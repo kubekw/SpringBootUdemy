@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/showTasks")
@@ -71,7 +72,7 @@ public String taskByGroupId(@PathVariable int id, Model model)
     model.addAttribute("taski", taskRepository.findAllByGroupId(id));
 
     //FIXME stworzyć nowy widok dla tasków z grupy projekty oraz toogla
-    return "tasks";
+    return "tasksByGroupID";
 }
 
     @GetMapping

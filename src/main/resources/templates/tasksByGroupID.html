@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App: Tasks</title>
+    <link rel="stylesheet" href="https://igoradamenko.github.io/awsm.css/css/awsm.min.css">
+
+    <style>
+        .BdRed{
+        border-color: red !important;
+        }
+    </style>
+</head>
+<body>
+<main>
+
+    <h4 span style="color: #00ff00;" th:if="${message} != null" th:text="${message}"></h4>
+    <form action="#" method="post" th:action="@{/showTasks}" th:object="${task}">
+    <fieldset >
+        <p span style="color: #ff0000;" th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
+        <legend> Nowy Task</legend>
+        <label>Opis <input  type="text" name="description"  th:field="*{description}" th:errorClass="BdRed"/>
+        </label>
+        <button type="submit" name="addTask">Dodaj</button>
+    </fieldset>
+    </form>
+
+    <table>
+        <tr><th>Numer Zadania</th><th>id</th><th>Description</th><th>Zrobione?</th><th>Zmiana statusu</th></tr>
+    <tr th:each="task, taskStat : ${taski}">
+        <td th:text="'Zadanie ' + ${taskStat.index + 1}"  ></td>
+        <td th:text="${task.id}">Id</td>
+        <td th:text="${task.description}">Opis</td>
+        <td th:text="${task.done}">Wykonany?</td>
+        <td> <form action="#" method="post"  th:action="@{/showTasks/{id}(id=${task.id})}"><button name="toogleTask" type="submit">Zmień</button> </form></td>
+    </table>
+
+    </tr>
+
+</main>
+
+</body>
+</html>
